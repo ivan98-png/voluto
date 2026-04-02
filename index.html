@@ -18,7 +18,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--warm); color: var(-
 
 /* Cursor — desktop only */
 #cursor { display:none; position:fixed; top:0; left:0; z-index:9999; width:8px; height:8px; background:var(--gold); border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); transition:width .2s,height .2s,background .2s; }
-@media (hover:hover) { #cursor{display:block;} body{cursor:none;} button,a{cursor:none;} }
+@media (hover:hover) { #cursor{display:block;} }
 #cursor.expand { width:32px; height:32px; background:transparent; border:1px solid var(--gold); }
 
 /* Noise */
@@ -50,8 +50,8 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:0 56px; heigh
 /* ── Hero ── */
 .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:68px; }
 .hero-left { display:flex; flex-direction:column; justify-content:center; padding:80px 64px 80px 80px; position:relative; z-index:2; }
-.hero-left > * { opacity:0; transform:translateY(24px); animation:fadeUp .9s ease forwards; }
-.hero-left > *:nth-child(1){animation-delay:.1s} .hero-left > *:nth-child(2){animation-delay:.25s} .hero-left > *:nth-child(3){animation-delay:.4s} .hero-left > *:nth-child(4){animation-delay:.55s} .hero-left > *:nth-child(5){animation-delay:.7s}
+.hero-left > * { opacity:1; }
+ .hero-left > *:nth-child(2){animation-delay:.25s} .hero-left > *:nth-child(3){animation-delay:.4s}  
 .eyebrow { font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:28px; display:flex; align-items:center; gap:14px; }
 .eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--gold); }
 .hero-title { font-family:'Playfair Display',serif; font-size:clamp(46px,5.2vw,70px); font-weight:300; line-height:1.08; color:var(--ink); margin-bottom:24px; }
@@ -68,10 +68,10 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:0 56px; heigh
 .stat-l { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-60); margin-top:6px; }
 
 /* Hero right */
-.hero-right { position:relative; background:var(--parchment); display:flex; align-items:center; justify-content:center; overflow:hidden; opacity:0; animation:fadeIn 1.2s ease .3s forwards; }
+.hero-right { position:relative; background:var(--parchment); display:flex; align-items:center; justify-content:center; overflow:hidden; opacity:1; }
 .hero-right::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 55% 45%,rgba(168,129,58,0.07) 0%,transparent 65%); }
 .hero-right::after { content:''; position:absolute; inset:40px; border:1px solid var(--border); pointer-events:none; }
-.inv-card { width:320px; height:440px; background:var(--warm); border:1px solid var(--border-strong); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:52px 40px; position:relative; z-index:2; box-shadow:0 32px 64px rgba(24,21,15,0.12),0 6px 16px rgba(24,21,15,0.06); animation:float 7s ease-in-out infinite; }
+.inv-card { width:320px; height:440px; background:var(--warm); border:1px solid var(--border-strong); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:52px 40px; position:relative; z-index:2; box-shadow:0 32px 64px rgba(24,21,15,0.12),0 6px 16px rgba(24,21,15,0.06);  }
 .inv-card::before { content:''; position:absolute; inset:8px; border:1px solid var(--border); pointer-events:none; }
 @keyframes float { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-14px) rotate(1deg)} }
 .inv-ornament { font-size:11px; letter-spacing:14px; color:var(--gold-light); margin-bottom:24px; }
@@ -190,7 +190,7 @@ section { position:relative; z-index:1; }
 
 @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
 @keyframes fadeIn { to { opacity:1; } }
-.reveal { opacity:0; transform:translateY(28px); transition:opacity .8s ease,transform .8s ease; }
+.reveal { opacity:1; transform:translateY(0); }
 .reveal.visible { opacity:1; transform:translateY(0); }
 ::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-track { background:var(--warm); } ::-webkit-scrollbar-thumb { background:var(--gold-pale); }
 
@@ -717,7 +717,7 @@ async function handleSubmit(e) {
       <p>Podaci se pohranjuju na sigurnim serverima uz standardne sigurnosne mjere, najviše dvije godine od zadnje interakcije.</p>
       <h2>4. Vaša prava (GDPR)</h2>
       <ul><li>Pristup vlastitim podacima</li><li>Ispravak netočnih podataka</li><li>Brisanje podataka</li><li>Prigovor na obradu</li><li>Prenosivost podataka</li></ul>
-      <p>Kontakt: <a href="mailto:zdravo@voluto.hr">zdravo@voluto.hr</a></p>
+      <p>Kontakt: <a href="/cdn-cgi/l/email-protection#96ecf2e4f7e0f9d6e0f9fae3e2f9b8fee4"><span class="__cf_email__" data-cfemail="057f617764736a45736a6970716a2b6d77">[email&#160;protected]</span></a></p>
       <h2>5. Kolačići</h2>
       <p>Stranica može koristiti kolačiće za analitiku. Možete ih kontrolirati u postavkama preglednika.</p>
     </div>
@@ -745,7 +745,7 @@ async function handleSubmit(e) {
       <p>Svi predlošci su vlasništvo Voluto. Kupnjom dobivate pravo privatne upotrebe. Komercijalna upotreba nije dopuštena.</p>
       <h2>6. Otkazivanje i povrat</h2>
       <ul><li>Prije izrade: povrat 100%</li><li>Nakon prvog nacrta: povrat 50%</li><li>Nakon odobrenja: bez povrata</li></ul>
-      <p>Zahtjev na <a href="mailto:zdravo@voluto.hr">zdravo@voluto.hr</a> u roku 14 dana.</p>
+      <p>Zahtjev na <a href="/cdn-cgi/l/email-protection#6f150b1d0e19002f1900031a1b0041071d"><span class="__cf_email__" data-cfemail="4f352b3d2e39200f3920233a3b2061273d">[email&#160;protected]</span></a> u roku 14 dana.</p>
       <h2>7. Dostupnost</h2>
       <p>Pozivnice i web stranica para dostupni su 12 mjeseci od isporuke.</p>
       <h2>8. Mjerodavno pravo</h2>
@@ -754,7 +754,7 @@ async function handleSubmit(e) {
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function openModal(id) {
   document.getElementById('modal-' + id).classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -767,6 +767,5 @@ document.addEventListener('keydown', function(e) {
   if(e.key === 'Escape') { closeModal('privatnost'); closeModal('uvjeti'); }
 });
 </script>
-
 </body>
 </html>
