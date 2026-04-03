@@ -659,7 +659,7 @@ async function handleSubmit(e) {
     btn.disabled=false;
   }
 }
-(el) {
+function toggleFaq(el) {
   const item = el.parentElement;
   const open = item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
