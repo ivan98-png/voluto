@@ -359,6 +359,14 @@ section { position:relative; z-index:1; }
   .faq { padding:80px 48px; } .footer-cta { padding:80px 48px; } .footer-bar { padding:28px 48px; }
 }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL63SPBPCP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL63SPBPCP');
+</script>
 </head>
 <body>
 <div id="cursor"></div>
@@ -695,7 +703,7 @@ async function handleSubmit(e) {
 </script>
 
 <!-- MODALS -->
-<div class="modal-overlay" id="modal-privatnost" onclick="if(event.target===this)closeModal('privatnost')">
+<div class="modal-overlay" id="modal-privatnost" onclick="closeModalOutside(event,'privatnost')">
   <div class="modal-box">
     <div class="modal-header">
       <span class="modal-title">Politika privatnosti</span>
@@ -719,7 +727,7 @@ async function handleSubmit(e) {
   </div>
 </div>
 
-<div class="modal-overlay" id="modal-uvjeti" onclick="if(event.target===this)closeModal('uvjeti')">
+<div class="modal-overlay" id="modal-uvjeti" onclick="closeModalOutside(event,'uvjeti')">
   <div class="modal-box">
     <div class="modal-header">
       <span class="modal-title">Opći uvjeti poslovanja</span>
@@ -753,6 +761,9 @@ async function handleSubmit(e) {
 function openModal(id) {
   document.getElementById('modal-' + id).classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+function closeModalOutside(e, id) {
+  if(e.target === document.getElementById('modal-' + id)) closeModal(id);
 }
 function closeModal(id) {
   document.getElementById('modal-' + id).classList.remove('open');
