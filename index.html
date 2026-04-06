@@ -517,7 +517,7 @@ section { position:relative; z-index:1; }
           </div>
           <div>
             <div class="contact-item-label">Email</div>
-            <a href="mailto:info@voluto.me" class="contact-item-val">info@voluto.me</a>
+            info@voluto.me
           </div>
         </div>
         <div class="contact-item">
@@ -541,7 +541,7 @@ section { position:relative; z-index:1; }
       </div>
     </div>
 
-    <form class="contact-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
+    <form class="contact-form reveal" action="https://formspree.io/f/mbdpqvop" method="POST" onsubmit="handleSubmit(event)">
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Ime i prezime *</label>
@@ -624,49 +624,7 @@ section { position:relative; z-index:1; }
 </footer>
 
 <script>
-const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => { cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; });
-document.querySelectorAll('button,a,.pkg,.faq-q,.g-item').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-});
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); } });
-}, {threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-function selectPackage(val) {
-  const sel = document.querySelector('select[name="paket"]');
-  if(sel) {
-    sel.value = val;
-    sel.dispatchEvent(new Event('change'));
-  }
-  const kontakt = document.getElementById('kontakt');
-  if(kontakt) kontakt.scrollIntoView({behavior:'smooth'});
-}
-async function handleSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('.form-submit');
-  btn.textContent = 'Šaljem...';
-  btn.disabled = true;
-  try {
-    const res = await fetch(form.action, {
-      method:'POST', body:new FormData(form),
-      headers:{'Accept':'application/json'}
-    });
-    if(res.ok) {
-      form.reset();
-      btn.style.display='none';
-      document.getElementById('formSuccess').style.display='block';
-    } else {
-      btn.textContent='Greška, pokušajte ponovo';
-      btn.disabled=false;
-    }
-  } catch {
-    btn.textContent='Greška, pokušajte ponovo';
-    btn.disabled=false;
-  }
-}
+
 function toggleFaq(el) {
   const item = el.parentElement;
   const open = item.classList.contains('open');
@@ -674,7 +632,12 @@ function toggleFaq(el) {
   if(!open) item.classList.add('open');
 }
 
-
+function selectPackage(val) {
+  const sel = document.querySelector('select[name="paket"]');
+  if(sel) { sel.value = val; sel.dispatchEvent(new Event('change')); }
+  const k = document.getElementById('kontakt');
+  if(k) { setTimeout(()=>k.scrollIntoView({behavior:'smooth'}), 100); }
+}
 
 async function handleSubmit(e) {
   e.preventDefault();
@@ -700,64 +663,23 @@ async function handleSubmit(e) {
     btn.disabled=false;
   }
 }
-</script>
 
-<!-- MODALS -->
-<div class="modal-overlay" id="modal-privatnost" onclick="closeModalOutside(event,'privatnost')">
-  <div class="modal-box">
-    <div class="modal-header">
-      <span class="modal-title">Politika privatnosti</span>
-      <button class="modal-close" onclick="closeModal('privatnost')">&#x2715;</button>
-    </div>
-    <div class="modal-body">
-      <p class="modal-date">Zadnja izmjena: siječanj 2025.</p>
-      <p>Voluto je posvećen zaštiti vaše privatnosti. Ova politika objašnjava kako prikupljamo, koristimo i štitimo vaše osobne podatke.</p>
-      <h2>1. Koje podatke prikupljamo</h2>
-      <ul><li>Ime i prezime</li><li>Email adresa</li><li>Broj telefona (opcionalno)</li><li>Detalji vjenčanja (datum, lokacija, broj gostiju)</li><li>Odabrani paket i predložak</li></ul>
-      <h2>2. Kako koristimo podatke</h2>
-      <p>Isključivo za pružanje usluge i komunikaciju s vama. Nikada ne prodajemo niti dijelimo podatke s trećim stranama.</p>
-      <h2>3. Pohrana i sigurnost</h2>
-      <p>Podaci se pohranjuju na sigurnim serverima uz standardne sigurnosne mjere, najviše dvije godine od zadnje interakcije.</p>
-      <h2>4. Vaša prava (GDPR)</h2>
-      <ul><li>Pristup vlastitim podacima</li><li>Ispravak netočnih podataka</li><li>Brisanje podataka</li><li>Prigovor na obradu</li><li>Prenosivost podataka</li></ul>
-      <p>Kontakt: <a href="mailto:info@voluto.me">info@voluto.me</a></p>
-      <h2>5. Kolačići</h2>
-      <p>Stranica može koristiti kolačiće za analitiku. Možete ih kontrolirati u postavkama preglednika.</p>
-    </div>
-  </div>
-</div>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); } });
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-<div class="modal-overlay" id="modal-uvjeti" onclick="closeModalOutside(event,'uvjeti')">
-  <div class="modal-box">
-    <div class="modal-header">
-      <span class="modal-title">Opći uvjeti poslovanja</span>
-      <button class="modal-close" onclick="closeModal('uvjeti')">&#x2715;</button>
-    </div>
-    <div class="modal-body">
-      <p class="modal-date">Zadnja izmjena: siječanj 2025.</p>
-      <p>Korištenjem naših usluga prihvaćate ove uvjete u cijelosti.</p>
-      <h2>1. O usluzi</h2>
-      <p>Voluto pruža usluge izrade digitalnih pozivnica za vjenčanja, uključujući personalizirani dizajn, web stranicu para, RSVP formu i nadzornu ploču.</p>
-      <h2>2. Narudžba i plaćanje</h2>
-      <p>Narudžba je potvrđena nakon dostave svih informacija i izvršenog plaćanja. Prihvaćamo bankovni transfer i online platne sustave.</p>
-      <h2>3. Rok isporuke</h2>
-      <p>Okvirni rok je 2 do 4 radna dana od primitka svih informacija.</p>
-      <h2>4. Revizije</h2>
-      <p>Svaka narudžba uključuje mogućnost izmjena. Značajne izmjene od početnih uputa mogu biti naplaćene dodatno.</p>
-      <h2>5. Prava na dizajn</h2>
-      <p>Svi predlošci su vlasništvo Voluto. Kupnjom dobivate pravo privatne upotrebe. Komercijalna upotreba nije dopuštena.</p>
-      <h2>6. Otkazivanje i povrat</h2>
-      <ul><li>Prije izrade: povrat 100%</li><li>Nakon prvog nacrta: povrat 50%</li><li>Nakon odobrenja: bez povrata</li></ul>
-      <p>Zahtjev na <a href="mailto:info@voluto.me">info@voluto.me</a> u roku 14 dana.</p>
-      <h2>7. Dostupnost</h2>
-      <p>Pozivnice i web stranica para dostupni su 12 mjeseci od isporuke.</p>
-      <h2>8. Mjerodavno pravo</h2>
-      <p>Primjenjuje se pravo Republike Hrvatske, nadležan sud u Zagrebu.</p>
-    </div>
-  </div>
-</div>
+// Cursor
+const cursor = document.getElementById('cursor');
+if(cursor) {
+  document.addEventListener('mousemove', e => { cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; });
+  document.querySelectorAll('button,a,.pkg,.faq-q,.g-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+  });
+}
 
-<script>
 function openModal(id) {
   document.getElementById('modal-' + id).classList.add('open');
   document.body.style.overflow = 'hidden';
