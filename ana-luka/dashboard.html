@@ -286,7 +286,7 @@ tbody tr:hover{background:var(--cream);}
 </div>
 
 <script>
-const SHEET_ID = "17fvu5LQe05TsrwMDNbw--LvsyuO1c1tT3_rk0IY6sxM";
+const SHEET_ID = "1sp1e9p82Ct9c2aT_y68BOE5kMHogmuqcb31u-TEG88M";
 const PASSWORD = "analuka2025";
 const MAX_GUESTS = 80;
 
@@ -337,14 +337,14 @@ function parseCSV(csv) {
   for (let i = 1; i < lines.length; i++) {
     const cols = lines[i].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
     const clean = cols.map(c => c.replace(/^"|"$/g,"").trim());
-    if (clean[0] && clean[0].length > 0) {
+    if (clean[3] && clean[3].length > 0) {
       rows.push({
-        ime: clean[0] || "",
-        osobe: parseInt(clean[1]) || 1,
+        datum: (clean[0] || "").substring(0, 10),
+        dijeta: clean[1] || "",
         dolazak: (clean[2] || "").toLowerCase(),
-        dijeta: clean[3] || "",
-        poruka: clean[4] || "",
-        datum: clean[5] || ""
+        ime: clean[3] || "",
+        osobe: parseInt(clean[4]) || 1,
+        poruka: clean[6] || ""
       });
     }
   }
